@@ -18,12 +18,16 @@ class Producto:
         return f"Producto {self.id} con nombre {self.nombre} precio {self.precio} y stock {self.stock}"
 
 class Pedido:
+    pedidos_registrados = []
     def __init__(self, id, cliente, producto, empleado, total):
         self.id = id
         self.cliente = cliente
         self.producto = producto
         self.empleado = empleado
         self.total = total
+    def registrar_pedido(self):
+        Pedido.pedidos_registrados.append(self)
+        print(f"Pedido registrado: ID {self.id}, Cliente {self.cliente}, Producto {self.producto}, Empleado {self.empleado}, Total {self.total}")
 
 class Empleado:
     def __init__(self, id, nombre, rol, turno):
@@ -36,3 +40,4 @@ class Contiene:
     def __init__(self, pedido_id, producto_id):
         self.pedido_id = pedido_id
         self.producto_id = producto_id
+
