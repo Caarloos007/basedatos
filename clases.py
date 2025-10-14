@@ -1,0 +1,38 @@
+class Cliente:
+    def __init__(self, id, email,puntos_fidelidad ):
+        self.id = id
+        self.email = email
+        self.puntos_fidelidad = puntos_fidelidad
+
+    def __str__(self):
+        return f"Cliente {self.id} con email {self.email} y puntos de fidelidad {self.puntos_fidelidad}"
+
+class Producto:
+    def __init__(self, id, nombre, precio, tipo):
+        self.id = id
+        self.nombre = nombre
+        self.precio = precio
+        self.tipo = tipo
+
+    def __str__(self):
+        return f"Producto {self.id} con nombre {self.nombre} precio {self.precio} y stock {self.stock}"
+
+class Pedido:
+    def __init__(self, id, cliente, producto, empleado, total):
+        self.id = id
+        self.cliente = cliente
+        self.producto = producto
+        self.empleado = empleado
+        self.total = total
+
+class Empleado:
+    def __init__(self, id, nombre, rol, turno):
+        self.id = id
+        self.nombre = nombre
+        self.rol = rol
+        self.turno = turno
+
+class Contiene:
+    def __init__(self, pedido_id, producto_id):
+        self.pedido_id = pedido_id
+        self.producto_id = producto_id
