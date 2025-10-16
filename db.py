@@ -42,32 +42,3 @@ def init_db():
 
 if __name__ == "__main__":
     init_db()
-
-import sqlite3
-from contextlib import closing
-
-DB_PATH = "smartcoffee.db"
-
-def get_conn():
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row  # Permite acceder a las columnas por nombre
-    conn.execute("PRAGMA foreign_keys = ON")  # Habilita claves foráneas
-    return conn
-
-
-def exec_script(sql: str):
-    """Ejecuta un script SQL completo (por ejemplo, para crear tablas)."""
-    with closing(get_conn()) as conn:  # Asegura cierre de conexión
-        with conn:  # Asegura commit/rollback automático
-            conn.executescript(sql)
-
-def crear_cliente(nombre, email, puntos=0):
-    with closing(get_conn()) as conn:
-        conn.execute(
-            "INSERT INTO clientes (nombre, email, puntos) VALUES (?,?,?)",
-            (nombre, email, puntos),
-        )
-
-def obtener_clientes():
-    with closing(get_conn()) as conn:
-        return conn.execute("SELECT * FROM clientes ORDER BY id").fetchall()
