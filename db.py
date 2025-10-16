@@ -61,3 +61,13 @@ def exec_script(sql: str):
         with conn:  # Asegura commit/rollback automático
             conn.executescript(sql)
 
+def crear_cliente(nombre, email, puntos=0):
+    with closing(get_conn()) as conn:
+        conn.execute(
+            "INSERT INTO clientes (nombre, email, puntos) VALUES (?,?,?)",
+            (nombre, email, puntos),
+        )
+
+def obtener_clientes():
+    with closing(get_conn()) as conn:
+        return conn.execute("SELECT * FROM clientes ORDER BY id").fetchall()
