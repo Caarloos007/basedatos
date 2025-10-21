@@ -81,7 +81,7 @@ def init_db():
 
     conn.commit()
     conn.close()
-    print("✅ Base de datos inicializada con éxito.")
+    print("Base de datos inicializada con éxito.")
 
 if __name__ == "__main__":
     init_db()
